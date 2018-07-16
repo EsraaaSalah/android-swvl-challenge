@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:clickable="true"
+    android:background="@drawable/ride_item_shape"
+    >
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="16dp"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="8dp">
+
+            <TextView
+                style="@style/BoldAlignLeftBlack38Caption1Style"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Today"
+                android:id="@+id/textView"
+                android:layout_marginBottom="2dp" />
+
+            <TextView
+                style="@style/LightAlignLeftBlack100Body1Style"
+                android:layout_width="70dp"
+                android:layout_height="wrap_content"
+                android:text="12:02 PM"
+                android:id="@+id/textView2" />
+        </LinearLayout>
+        <View
+            android:layout_width="4dp"
+            android:layout_height="35dp"
+            android:background="@drawable/vertical_bar"
+            android:layout_marginRight="8dp"
+            android:layout_gravity="center" />
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <TextView
+                style="@style/RegularAlignLeftBlack100Body1Style"
+                android:id="@+id/textViewDropOff"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="Cairo Festival City Mall"
+                android:layout_marginBottom="8dp" />
+
+            <TextView
+                style="@style/RegularAlignLeftBlack100Body1Style"
+                android:id="@+id/textViewPickUp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="Arkan Plaza"
+                />
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+    <TextView
+        style="@style/RegularAlignCenterWhite100Body2Style"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/line_number_shape"
+        android:id="@+id/textView3"
+        tools:text="S319"
+        android:paddingLeft="5dp"
+        android:paddingTop="2dp"
+        android:paddingRight="5dp"
+        android:paddingBottom="2dp"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="16dp"
+        android:layout_marginRight="16dp" />
+
+</RelativeLayout>
