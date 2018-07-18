@@ -51,7 +51,7 @@
 
             <TextView
                 style="@style/RegularAlignLeftBlack100Body1Style"
-                android:id="@+id/textViewDropOff"
+                android:id="@+id/textViewPickUp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Cairo Festival City Mall"
@@ -59,7 +59,7 @@
 
             <TextView
                 style="@style/RegularAlignLeftBlack100Body1Style"
-                android:id="@+id/textViewPickUp"
+                android:id="@+id/textViewDropOff"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Arkan Plaza"
@@ -75,7 +75,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/line_number_shape"
-        android:id="@+id/textView3"
+        android:id="@+id/textViewLineNumber"
         android:text="S319"
         android:paddingLeft="5dp"
         android:paddingTop="2dp"

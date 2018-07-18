@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.TextView;
 
 import java.util.List;
 
@@ -35,9 +36,15 @@ public class RideAdapter extends BaseAdapter{
 
     @Override
     public View getView(int i, View view, ViewGroup viewGroup) {
+        Ride myRide = rides.get(i);
         View v = inflater.inflate(R.layout.list_item_ride,null);
 
-
+        TextView pickUpTextView = (TextView) v.findViewById(R.id.textViewPickUp);
+        pickUpTextView.setText(myRide.getPickup().getTitle());
+        TextView dropOffTextView = (TextView) v.findViewById(R.id.textViewDropOff);
+        dropOffTextView.setText(myRide.getDropoff().getTitle());
+        TextView lineNumberTextView = (TextView) v.findViewById(R.id.textViewLineNumber);
+        lineNumberTextView.setText(myRide.getLineNumber());
         return v;
     }
 }
