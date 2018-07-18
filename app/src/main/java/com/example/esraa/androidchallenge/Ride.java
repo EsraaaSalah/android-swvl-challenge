@@ -1,10 +1,13 @@
 package com.example.esraa.androidchallenge;
 
+import com.google.gson.annotations.SerializedName;
+
 public class Ride {
     private String id;
     private String date;
     private Pickup pickup;
     private Dropoff dropoff;
+    @SerializedName("line_number")
     private String lineNumber;
 
     public String getId() {
