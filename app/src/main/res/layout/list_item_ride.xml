@@ -27,7 +27,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Today"
-                android:id="@+id/textView"
+                android:id="@+id/textViewDate"
                 android:layout_marginBottom="2dp" />
 
             <TextView
@@ -35,7 +35,7 @@
                 android:layout_width="70dp"
                 android:layout_height="wrap_content"
                 android:text="12:02 PM"
-                android:id="@+id/textView2" />
+                android:id="@+id/textViewTime" />
         </LinearLayout>
         <View
             android:layout_width="4dp"

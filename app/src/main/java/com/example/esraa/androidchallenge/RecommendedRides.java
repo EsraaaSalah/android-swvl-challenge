@@ -17,26 +17,33 @@ import com.android.volley.toolbox.Volley;
 import com.google.gson.Gson;
 
 import java.lang.reflect.Array;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 public class RecommendedRides extends AppCompatActivity {
     private ArrayList<Ride> ridesList;
     private RideAdapter ra;
     private ListView ridesListView;
-    final String getRecommendationsUrl = "http://private-fc685a-swvlandroidjuniorchallenge.apiary-mock.com/recommendations";
+    final String getRecommendationsUrl = "http:" +
+            "//private-fc685a-swvlandroidjuniorchallenge.apiary-mock.com/recommendations";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recommended_rides);
         ridesListView = (ListView) findViewById(R.id.listView_rides);
-        ridesList = new ArrayList();
+
     }
     protected void onStart() {
         super.onStart();
+        ridesList = new ArrayList();
         FetchRides fr = new FetchRides();
         fr.execute();
+
     }
     public class FetchRides extends AsyncTask<Void, Void, Void> {
         @Override
@@ -52,7 +59,6 @@ public class RecommendedRides extends AppCompatActivity {
                     ridesList.addAll(Arrays.asList(ridesArray));
                     ra = new RideAdapter(ridesList, RecommendedRides.this);
                     ridesListView.setAdapter(ra);
-                    Toast.makeText(RecommendedRides.this,ridesArray[0].getId()+"", Toast.LENGTH_SHORT).show();
                 }
             };
             Response.ErrorListener errorListener = new Response.ErrorListener()
