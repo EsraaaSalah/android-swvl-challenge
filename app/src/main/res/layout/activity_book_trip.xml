@@ -33,7 +33,7 @@
             android:layout_height="wrap_content"
             android:text="BOOK"
             android:textColor="@color/colorWhite"
-            android:id="@+id/button"
+            android:id="@+id/buttonBook"
             android:background="@drawable/button_background"
             style="?android:attr/borderlessButtonStyle"/>
     </LinearLayout>
