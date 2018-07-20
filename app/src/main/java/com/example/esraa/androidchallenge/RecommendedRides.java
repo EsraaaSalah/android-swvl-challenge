@@ -1,9 +1,12 @@
 package com.example.esraa.androidchallenge;
 
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -35,7 +38,7 @@ public class RecommendedRides extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recommended_rides);
-        ridesListView = (ListView) findViewById(R.id.listView_rides);
+
 
     }
     protected void onStart() {
@@ -58,7 +61,25 @@ public class RecommendedRides extends AppCompatActivity {
                     Ride[] ridesArray = gson.fromJson(response, Ride[].class);
                     ridesList.addAll(Arrays.asList(ridesArray));
                     ra = new RideAdapter(ridesList, RecommendedRides.this);
+                    ridesListView = (ListView) findViewById(R.id.listView_rides);
                     ridesListView.setAdapter(ra);
+                    ridesListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                        @Override
+                        public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+
+                            Ride myRide = (Ride) ra.getItem(i);
+                            Intent intent = new Intent(RecommendedRides.this, BookTrip.class);
+                            intent.putExtra("rideId", myRide.getId());
+                            intent.putExtra("pickUpId", myRide.getPickup().getId());
+                            intent.putExtra("dropOffId", myRide.getDropoff().getId());
+                            intent.putExtra("pickUpCoordinates", myRide.getPickup()
+                                    .getCoordinates().toArray());
+                            intent.putExtra("dropOffCoordinates", myRide.getDropoff()
+                                    .getCoordinates().toArray());
+                            startActivity(intent);
+                        }
+                    });
+
                 }
             };
             Response.ErrorListener errorListener = new Response.ErrorListener()
