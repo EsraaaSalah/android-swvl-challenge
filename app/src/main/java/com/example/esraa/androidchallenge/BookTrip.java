@@ -35,6 +35,7 @@ public class BookTrip extends AppCompatActivity {
     private Object[] pickUpCoordinates;
     private Object[] dropOffCoordinates;
     private String url;
+    private Button buttonBook;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,9 +50,11 @@ public class BookTrip extends AppCompatActivity {
         pickUpCoordinates = (Object[]) bundle.getSerializable("pickUpCoordinates");
         dropOffCoordinates = (Object[]) bundle.getSerializable("dropOffCoordinates");
 
-        Button buttonBook = (Button) findViewById(R.id.buttonBook);
+        buttonBook = (Button) findViewById(R.id.buttonBook);
         buttonBook.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
+                buttonBook.setEnabled(false);
+                Log.e("Button","Button disabled");
                 sendPostRequest();
             }
         });
@@ -80,6 +83,8 @@ public class BookTrip extends AppCompatActivity {
         {
             @Override
             public void onResponse(String response) {
+                buttonBook.setEnabled(true);
+                Log.e("Button","Button enabled");
                 Log.e("Response","Successfully booked");
                 Toast.makeText(BookTrip.this,"Your Trip is successfully booked",
                         Toast.LENGTH_SHORT).show();
@@ -87,8 +92,11 @@ public class BookTrip extends AppCompatActivity {
         };
         Response.ErrorListener errorListener = new Response.ErrorListener()
         {
+
             @Override
             public void onErrorResponse(VolleyError error) {
+                buttonBook.setEnabled(true);
+                Log.e("Button","Button enabled");
                 Log.e("Error.Response", error.toString());
                 Toast.makeText(BookTrip.this,"An Error Occurred",
                         Toast.LENGTH_SHORT).show();
