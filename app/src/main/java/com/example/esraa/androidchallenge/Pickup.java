@@ -32,4 +32,6 @@ public class Pickup {
         this.coordinates = coordinates;
     }
 
+
+
 }

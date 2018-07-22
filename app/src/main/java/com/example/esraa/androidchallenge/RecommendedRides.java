@@ -34,6 +34,7 @@ public class RecommendedRides extends AppCompatActivity {
     private ListView ridesListView;
     final String getRecommendationsUrl = "http:" +
             "//private-fc685a-swvlandroidjuniorchallenge.apiary-mock.com/recommendations";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -69,13 +70,15 @@ public class RecommendedRides extends AppCompatActivity {
 
                             Ride myRide = (Ride) ra.getItem(i);
                             Intent intent = new Intent(RecommendedRides.this, BookTrip.class);
-                            intent.putExtra("rideId", myRide.getId());
-                            intent.putExtra("pickUpId", myRide.getPickup().getId());
-                            intent.putExtra("dropOffId", myRide.getDropoff().getId());
-                            intent.putExtra("pickUpCoordinates", myRide.getPickup()
+                            Bundle bundle = new Bundle();
+                            bundle.putString("rideId", myRide.getId());
+                            bundle.putString("pickUpId", myRide.getPickup().getId());
+                            bundle.putString("dropOffId", myRide.getDropoff().getId());
+                            bundle.putSerializable("pickUpCoordinates", myRide.getPickup()
+                                                    .getCoordinates().toArray());
+                            bundle.putSerializable("dropOffCoordinates", myRide.getDropoff()
                                     .getCoordinates().toArray());
-                            intent.putExtra("dropOffCoordinates", myRide.getDropoff()
-                                    .getCoordinates().toArray());
+                            intent.putExtras(bundle);
                             startActivity(intent);
                         }
                     });
