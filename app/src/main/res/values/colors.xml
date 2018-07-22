@@ -7,4 +7,5 @@
     <color name="colorAccent">#9baacc</color>
     <color name="colorGrey">#f2f4f7</color>
     <color name="colorShadow">#3d616b80</color>
+    <color name="colorTransparent">#00000000</color>
 </resources>

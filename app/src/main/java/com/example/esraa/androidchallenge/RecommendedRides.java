@@ -2,8 +2,10 @@ package com.example.esraa.androidchallenge;
 
 import android.content.Intent;
 import android.os.AsyncTask;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
@@ -40,6 +42,20 @@ public class RecommendedRides extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recommended_rides);
 
+
+        Toolbar my_toolbar = (Toolbar) findViewById(R.id.my_toolbar);
+        setSupportActionBar(my_toolbar);
+
+        // Get a support ActionBar corresponding to this toolbar
+        ActionBar ab = getSupportActionBar();
+
+        // Enable the Up button
+        ab.setDisplayHomeAsUpEnabled(true);
+
+        // Remove title
+        ab.setDisplayShowTitleEnabled(false);
+
+        ab.setHomeAsUpIndicator(R.mipmap.menu_icon);
 
     }
     protected void onStart() {
