@@ -1,5 +1,4 @@
 <resources>
     <string name="app_name">AndroidChallenge</string>
     <string name="title_activity_book_trip">BookTrip</string>
-    <string name="google_maps_API_key">AIzaSyD4o5Tj0A7eva1uAn5c8_h04Rf9wFl0Bmg</string>
 </resources>
