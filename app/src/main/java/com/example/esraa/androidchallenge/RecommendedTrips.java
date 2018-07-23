@@ -23,16 +23,16 @@ import com.google.gson.Gson;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class RecommendedRides extends AppCompatActivity {
-    private ArrayList<Ride> ridesList;
-    private RideAdapter ra;
-    private ListView ridesListView;
+public class RecommendedTrips extends AppCompatActivity {
+    private ArrayList<Trip> tripsList;
+    private TripAdapter tripAdapter;
+    private ListView tripsListView;
     private String getRecommendationsUrl;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_recommended_rides);
+        setContentView(R.layout.activity_recommended_trips);
 
 
         Toolbar my_toolbar = (Toolbar) findViewById(R.id.my_toolbar);
@@ -54,12 +54,14 @@ public class RecommendedRides extends AppCompatActivity {
         super.onStart();
 
         buildUrl();
-        ridesList = new ArrayList();
+
+        tripsList = new ArrayList();
         FetchRides fr = new FetchRides();
 
         fr.execute();
 
     }
+    // Build the url of the recommended trips get request
     public void buildUrl() {
         Uri.Builder builder = new Uri.Builder();
         builder.scheme("https")
@@ -72,38 +74,60 @@ public class RecommendedRides extends AppCompatActivity {
         @Override
         protected Void doInBackground(Void... voids)
         {
-            RequestQueue queue = Volley.newRequestQueue(RecommendedRides.this);
+            // Create request queue
+            RequestQueue queue = Volley.newRequestQueue(RecommendedTrips.this);
+
+            // Create on Response method to be called in case of success
             Response.Listener<String> responseListener = new Response.Listener<String>()
             {
                 @Override
                 public void onResponse(String response) {
                     Gson gson = new Gson();
-                    Ride[] ridesArray = gson.fromJson(response, Ride[].class);
-                    ridesList.addAll(Arrays.asList(ridesArray));
-                    ra = new RideAdapter(ridesList, RecommendedRides.this);
-                    ridesListView = (ListView) findViewById(R.id.listView_rides);
-                    ridesListView.setAdapter(ra);
-                    ridesListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+                    // Parse the returned JSON String to array of Trips
+                    Trip[] tripsArray = gson.fromJson(response, Trip[].class);
+
+                    // Add trips to trips list
+                    tripsList.addAll(Arrays.asList(tripsArray));
+
+                    // Create trip adapter with the list of trips
+                    tripAdapter = new TripAdapter(tripsList, RecommendedTrips.this);
+
+                    tripsListView = (ListView) findViewById(R.id.listView_rides);
+
+                    // Set trip adapter to the list view
+                    tripsListView.setAdapter(tripAdapter);
+
+                    // Create method to be called when a trip is selected
+                    tripsListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                         @Override
                         public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
 
-                            Ride myRide = (Ride) ra.getItem(i);
-                            Intent intent = new Intent(RecommendedRides.this, BookTrip.class);
+                            Trip myTrip = (Trip) tripAdapter.getItem(i);
+
+                            // Create new Intent
+                            Intent intent = new Intent(RecommendedTrips.this, BookTrip.class);
+
+                            // Add required Data to the intent
                             Bundle bundle = new Bundle();
-                            bundle.putString("rideId", myRide.getId());
-                            bundle.putString("pickUpId", myRide.getPickup().getId());
-                            bundle.putString("dropOffId", myRide.getDropoff().getId());
-                            bundle.putSerializable("pickUpCoordinates", myRide.getPickup()
+                            bundle.putString("rideId", myTrip.getId());
+                            bundle.putString("pickUpId", myTrip.getPickup().getId());
+                            bundle.putString("dropOffId", myTrip.getDropoff().getId());
+                            bundle.putSerializable("pickUpCoordinates", myTrip.getPickup()
                                                     .getCoordinates().toArray());
-                            bundle.putSerializable("dropOffCoordinates", myRide.getDropoff()
+                            bundle.putSerializable("dropOffCoordinates", myTrip.getDropoff()
                                     .getCoordinates().toArray());
                             intent.putExtras(bundle);
+
+                            // Start 'BookTrip' activity using the created intent
                             startActivity(intent);
                         }
                     });
 
                 }
             };
+
+            // Create on Error method to be called in case of failure
             Response.ErrorListener errorListener = new Response.ErrorListener()
             {
                 @Override
@@ -112,8 +136,12 @@ public class RecommendedRides extends AppCompatActivity {
 
                 }
             };
+
+            // Create the get request
             StringRequest getRequest = new StringRequest(Request.Method.GET, getRecommendationsUrl,
                     responseListener,errorListener);
+
+            // Add request to the request queue
             queue.add(getRequest);
             return null;
         }

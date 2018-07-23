@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.esraa.androidchallenge.RecommendedRides"
+    tools:context=".RecommendedTrips"
     android:background="@color/colorGrey"
     android:theme="@style/AppTheme">
 

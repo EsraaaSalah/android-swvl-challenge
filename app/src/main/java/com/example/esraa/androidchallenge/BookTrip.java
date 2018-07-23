@@ -57,23 +57,28 @@ public class BookTrip extends AppCompatActivity {
         Intent intent = getIntent();
         Bundle bundle = intent.getExtras();
 
+        // Get data from the intent
         rideId = bundle.getString("rideId");
         pickUpId = bundle.getString("pickUpId");
         dropOffId = bundle.getString("dropOffId");
         pickUpCoordinates = (Object[]) bundle.getSerializable("pickUpCoordinates");
         dropOffCoordinates = (Object[]) bundle.getSerializable("dropOffCoordinates");
 
+        // Set the on click method of the Book button
         buttonBook = (Button) findViewById(R.id.buttonBook);
         buttonBook.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
+                // Disable the button during the request
                 buttonBook.setEnabled(false);
                 Log.e("Button","Button disabled");
+                // Execute post request
                 sendPostRequest();
             }
         });
 
         ImageView imageView = (ImageView) findViewById(R.id.imageView);
 
+        // Create url to get the required map
         Uri.Builder builder = new Uri.Builder();
         builder.scheme("https")
                 .authority("maps.googleapis.com")
@@ -87,7 +92,8 @@ public class BookTrip extends AppCompatActivity {
         url = builder.build().toString();
         url += "&markers=color:red%7C" + coordinatesToString(pickUpCoordinates);
         url += "&markers=color:green%7C" + coordinatesToString(dropOffCoordinates);
-        Log.e("fhrekhf",url);
+
+        // Load pic of the map into the imageView
         Picasso.with(BookTrip.this)
                 .load(url)
                 .into(imageView);
@@ -99,44 +105,63 @@ public class BookTrip extends AppCompatActivity {
     }
     public void sendPostRequest()
     {
+        // Build url of the booking post request
         Uri.Builder builder = new Uri.Builder();
         builder.scheme("https")
                 .authority("private-fc685a-swvlandroidjuniorchallenge.apiary-mock.com")
                 .appendPath("book");
         String bookUrl = builder.build().toString();
 
+        // Create request queue
         RequestQueue queue = Volley.newRequestQueue(BookTrip.this);
+
+        // Create on Response method to be called in case of success
         Response.Listener<String> responseListener = new Response.Listener<String>()
         {
             @Override
             public void onResponse(String response) {
+
+                // Enable the button after the request
                 buttonBook.setEnabled(true);
                 Log.e("Button","Button enabled");
                 Log.e("Response","Successfully booked");
+
+                // Display a success message
                 Toast.makeText(BookTrip.this,"Your Trip is successfully booked",
                         Toast.LENGTH_SHORT).show();
             }
         };
+
+        // Create on Error method to be called in case of failure
         Response.ErrorListener errorListener = new Response.ErrorListener()
         {
 
             @Override
             public void onErrorResponse(VolleyError error) {
+
+                // Enable the button after the request
                 buttonBook.setEnabled(true);
                 Log.e("Button","Button enabled");
                 Log.e("Error.Response", error.toString());
+
+                // Display an error message
                 Toast.makeText(BookTrip.this,"An Error Occurred",
                         Toast.LENGTH_SHORT).show();
             }
         };
+
+        // Create the post request
         StringRequest postRequest = new StringRequest(Request.Method.POST, bookUrl,
                 responseListener, errorListener) {
+
+            // Set content type to application/json
             @Override
             public Map<String, String> getHeaders() throws AuthFailureError {
                 Map<String, String> params = new HashMap<String, String>();
                 params.put("Content-Type", "application/json");
                 return params;
             }
+            // Add the required data of the trip to the request body
             @Override
             public byte[] getBody() throws AuthFailureError {
                 JSONObject body = new JSONObject();
@@ -152,6 +177,7 @@ public class BookTrip extends AppCompatActivity {
                 return body.toString().getBytes();
             }
         };
+        // Add request to the request queue
         queue.add(postRequest);
     }
 }

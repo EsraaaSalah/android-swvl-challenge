@@ -2,7 +2,7 @@ package com.example.esraa.androidchallenge;
 
 import com.google.gson.annotations.SerializedName;
 
-public class Ride {
+public class Trip {
     private String id;
     private String date;
     private Pickup pickup;
