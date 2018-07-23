@@ -7,11 +7,9 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
-import android.view.Display;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
@@ -76,10 +74,20 @@ public class BookTrip extends AppCompatActivity {
 
         ImageView imageView = (ImageView) findViewById(R.id.imageView);
 
-        url = "https://maps.googleapis.com/maps/api/staticmap?" +
-                "&size=360x607&maptype=roadmap&scale=2" +
-                "&markers=color:red%7C" + coordinatesToString(pickUpCoordinates)+
-                "&markers=color:green%7C" + coordinatesToString(dropOffCoordinates);
+        Uri.Builder builder = new Uri.Builder();
+        builder.scheme("https")
+                .authority("maps.googleapis.com")
+                .appendPath("maps")
+                .appendPath("api")
+                .appendPath("staticmap")
+                .appendQueryParameter("size","360x607")
+                .appendQueryParameter("maptype","roadmap")
+                .appendQueryParameter("scale","2");
+
+        url = builder.build().toString();
+        url += "&markers=color:red%7C" + coordinatesToString(pickUpCoordinates);
+        url += "&markers=color:green%7C" + coordinatesToString(dropOffCoordinates);
+        Log.e("fhrekhf",url);
         Picasso.with(BookTrip.this)
                 .load(url)
                 .into(imageView);
@@ -91,8 +99,12 @@ public class BookTrip extends AppCompatActivity {
     }
     public void sendPostRequest()
     {
-        String url = "http:" +
-                "//private-fc685a-swvlandroidjuniorchallenge.apiary-mock.com/book";
+        Uri.Builder builder = new Uri.Builder();
+        builder.scheme("https")
+                .authority("private-fc685a-swvlandroidjuniorchallenge.apiary-mock.com")
+                .appendPath("book");
+        String bookUrl = builder.build().toString();
+
         RequestQueue queue = Volley.newRequestQueue(BookTrip.this);
         Response.Listener<String> responseListener = new Response.Listener<String>()
         {
@@ -117,7 +129,7 @@ public class BookTrip extends AppCompatActivity {
                         Toast.LENGTH_SHORT).show();
             }
         };
-        StringRequest postRequest = new StringRequest(Request.Method.POST, url,
+        StringRequest postRequest = new StringRequest(Request.Method.POST, bookUrl,
                 responseListener, errorListener) {
             @Override
             public Map<String, String> getHeaders() throws AuthFailureError {
