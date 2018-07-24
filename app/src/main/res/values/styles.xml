@@ -1,16 +1,14 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/colorRed</item>
-        <item name="colorPrimaryDark">@color/colorBlack</item>
-        <item name="colorAccent">@color/colorAccent</item>
-        <item name="android:windowActionBar">false</item>
-        <item name="android:windowNoTitle">true</item>
+        <item name="android:statusBarColor">@color/colorGrey</item>
     </style>
 
-    <style name="RegularAlignLeftBlack100Body1Style" parent="Theme.AppCompat.Light.DarkActionBar">
+
+
+    <style name="RegularAlignLeftBlack100Body1Style" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
         <item name="android:textColor">@color/colorBlack</item>
         <item name="android:gravity">left</item>
@@ -19,7 +17,7 @@
         <item name="android:textStyle">normal</item>
     </style>
 
-    <style name="BoldAlignLeftBlack38Caption1Style" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="BoldAlignLeftBlack38Caption1Style" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
         <item name="android:textColor">@color/colorBlack</item>
         <item name="android:gravity">left</item>
@@ -28,7 +26,7 @@
         <item name="android:textStyle">bold</item>
     </style>
 
-    <style name="LightAlignLeftBlack100Body1Style" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="LightAlignLeftBlack100Body1Style" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
         <item name="android:textColor">@color/colorBlack</item>
         <item name="android:gravity">left</item>
@@ -37,7 +35,7 @@
         <item name="android:textStyle">normal</item>
     </style>
 
-    <style name="RegularAlignCenterWhite100Body2Style" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="RegularAlignCenterWhite100Body2Style" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
         <item name="android:textColor">@color/colorWhite</item>
         <item name="android:gravity">center</item>
@@ -46,13 +44,11 @@
         <item name="android:textStyle">normal</item>
     </style>
 
-    <style name="AppTheme.NoActionBar">
-        <item name="windowActionBar">false</item>
+    <style name="BookTripTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="windowActionBar">true</item>
         <item name="windowNoTitle">true</item>
+        <item name="android:windowTranslucentStatus">true</item>
+        <item name="android:statusBarColor">@color/colorTransparent</item>
     </style>
-
-    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
-
-    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
 </resources>

@@ -9,5 +9,5 @@
     <color name="colorShadow">#3d616b80</color>
     <color name="colorTransparent">#00000000</color>
     <color name="colorPrimaryDark">#ef4349</color>
-
+    <color name="colorButtonShadow">#59ef4349</color>
 </resources>

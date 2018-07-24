@@ -1,11 +1,13 @@
 package com.example.esraa.androidchallenge;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -40,7 +42,10 @@ public class BookTrip extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_book_trip);
 
+
         Toolbar my_toolbar = (Toolbar) findViewById(R.id.my_toolbar);
+
+        // Set ActionBar to my_toolbar
         setSupportActionBar(my_toolbar);
 
         // Get a support ActionBar corresponding to this toolbar
@@ -78,6 +83,11 @@ public class BookTrip extends AppCompatActivity {
 
         ImageView imageView = (ImageView) findViewById(R.id.imageView);
 
+        // Get dimensions of screen in dp
+        DisplayMetrics displayMetrics = getResources().getDisplayMetrics();
+        int dpHeight = (int) ((displayMetrics.heightPixels) / displayMetrics.density);
+        int dpWidth = (int) (displayMetrics.widthPixels / displayMetrics.density);
+
         // Create url to get the required map
         Uri.Builder builder = new Uri.Builder();
         builder.scheme("https")
@@ -85,7 +95,7 @@ public class BookTrip extends AppCompatActivity {
                 .appendPath("maps")
                 .appendPath("api")
                 .appendPath("staticmap")
-                .appendQueryParameter("size","360x607")
+                .appendQueryParameter("size",dpWidth+"x"+dpHeight)
                 .appendQueryParameter("maptype","roadmap")
                 .appendQueryParameter("scale","2");
 

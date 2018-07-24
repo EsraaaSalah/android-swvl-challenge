@@ -5,8 +5,8 @@
     android:layout_height="fill_parent"
     tools:context="com.example.esraa.androidchallenge.BookTrip"
     android:background="@color/colorGrey"
-    android:theme="@style/AppTheme"
-    android:id="@+id/mainLayout">
+    android:id="@+id/mainLayout"
+    >
 
 
     <ImageView
@@ -16,7 +16,8 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:background="@color/colorWhite" />
+        android:background="@color/colorWhite"
+        />
 
     <LinearLayout
         android:orientation="vertical"
@@ -27,17 +28,20 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:gravity="bottom|center_horizontal"
-        android:paddingBottom="72dp">
+        android:paddingBottom="72dp"
+        android:clipToPadding="false">
 
         <Button
             android:layout_width="312dp"
-            android:layout_height="wrap_content"
+            android:layout_height="48dp"
             android:text="BOOK"
             android:textColor="@color/colorWhite"
             android:id="@+id/buttonBook"
             android:background="@drawable/button_background"
-            style="?android:attr/borderlessButtonStyle"/>
+            android:gravity="top|center_horizontal"
+            android:paddingTop="15dp" />
     </LinearLayout>
     <include layout="@layout/toolbar"
-        android:id="@+id/my_toolbar"/>
+        android:id="@+id/my_toolbar"
+        />
 </RelativeLayout>

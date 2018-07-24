@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:background="@drawable/ride_item_shape"
     android:descendantFocusability="blocksDescendants"
+    android:elevation="4dp"
     >
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"

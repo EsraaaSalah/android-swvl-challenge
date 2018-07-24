@@ -8,21 +8,21 @@
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
-        android:supportsRtl="true"
-        android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-        <activity android:name=".RecommendedTrips">
+        android:supportsRtl="true">
+        <activity android:name=".RecommendedTrips"
+            android:theme="@style/AppTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
         </activity>
         <activity
+            android:theme="@style/BookTripTheme"
             android:name=".BookTrip"
             android:label="@string/title_activity_book_trip"
-            android:theme="@style/AppTheme.NoActionBar"
-            android:parentActivityName=".RecommendedTrips"
-            ></activity>
+            android:parentActivityName=".RecommendedTrips">
+        </activity>
     </application>
 
 </manifest>
