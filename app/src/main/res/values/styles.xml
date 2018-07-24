@@ -1,9 +1,10 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
 
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
         <item name="android:statusBarColor">@color/colorGrey</item>
+        <item name="android:windowLightStatusBar" tools:targetApi="23">true</item>
     </style>
 
 
@@ -45,8 +46,6 @@
     </style>
 
     <style name="BookTripTheme" parent="Theme.AppCompat.Light.NoActionBar">
-        <item name="windowActionBar">true</item>
-        <item name="windowNoTitle">true</item>
         <item name="android:windowTranslucentStatus">true</item>
         <item name="android:statusBarColor">@color/colorTransparent</item>
     </style>
